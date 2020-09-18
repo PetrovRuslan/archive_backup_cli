@@ -18,16 +18,16 @@ if os.path.exists(args.source):
         shutil.make_archive(f'{args.target}{archive_dir}_{date}_{time}', "gztar", parents_dir, archive_dir)
         with open('backups_log.csv', mode='a') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow({f'{args.target}', f'{args.source}', f'{time}', 'success'})
+            writer.writerow({f'{args.source};{args.target}{archive_dir}_{date}_{time}.tar.gz;{date};{time};success'})
     else:
         os.mkdir(args.target)
         shutil.make_archive(f'{args.target}{archive_dir}_{date}_{time}', "gztar", parents_dir, archive_dir)
         with open('backups_log.csv', mode='a') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow({f'{args.target}', f'{args.source}', f'{time}', 'success'})
+            writer.writerow({f'{args.source};{args.target}{archive_dir}_{date}_{time}.tar.gz;{date};{time};success'})
     print(f'{args.target}{archive_dir}_{date}_{time}.tar.gz')
 else:
     print('Исходной директории не существует')
     with open('backups_log.csv', mode='a') as csv_file:
         writer = csv.writer(csv_file)
-        writer.writerow({f'{args.target}', 'not found', f'{time}', 'fail'})
+        writer.writerow({f'not found;not found;{date};{time};fail'})
