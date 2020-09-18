@@ -20,13 +20,13 @@ if os.path.exists(args.source):
         shutil.make_archive(f'{args.target}{archive_dir}_{date}_{time}', args.compress, parents_dir, archive_dir)
         with open('journal.csv', mode='a') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow({f'{args.source};{args.target}{archive_dir}_{date}_{time}.{compress};{date};{time};success'})
+            writer.writerow({f'{args.source};{args.target}{archive_dir}_{date}_{time}.{args.compress};{date};{time};success'})
     else:
         os.makedirs(args.target)
         shutil.make_archive(f'{args.target}{archive_dir}_{date}_{time}', args.compress, parents_dir, archive_dir)
         with open('journal.csv', mode='a') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow({f'{args.source};{args.target}{archive_dir}_{date}_{time}.{compress};{date};{time};success'})
+            writer.writerow({f'{args.source};{args.target}{archive_dir}_{date}_{time}.{args.compress};{date};{time};success'})
     print(f'{args.target}{archive_dir}_{date}_{time}.tar.gz')
 else:
     print('Исходной директории не существует')
